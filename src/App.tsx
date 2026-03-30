@@ -12,9 +12,11 @@ import {
   User,
   Layers,
   Zap,
-  FileText
+  FileText,
+  Menu,
+  X
 } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 
 // --- Types ---
 
@@ -121,50 +123,98 @@ const SkillModule: React.FC<SkillTagProps> = ({ label, level }) => (
 
 export default function App() {
   const [activeSection, setActiveSection] = React.useState('home');
+  const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
 
   const scrollTo = (id: string) => {
     setActiveSection(id);
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setIsSidebarOpen(false);
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   };
 
   return (
-    <div className="flex h-screen bg-surface text-on-surface overflow-hidden">
-      {/* Sidebar */}
-      <aside className="w-64 bg-surface border-r border-outline-variant/10 flex flex-col">
-        <div className="p-8 mb-4">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="w-8 h-8 bg-primary flex items-center justify-center">
-              <Code2 size={20} className="text-on-primary" />
+    <div className="flex flex-col lg:flex-row min-h-screen bg-surface text-on-surface overflow-x-hidden">
+      {/* Mobile Header */}
+      <header className="lg:hidden h-20 bg-surface border-b border-outline-variant/10 flex items-center justify-between px-6 sticky top-0 z-50">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 bg-primary flex items-center justify-center">
+            <Code2 size={20} className="text-on-primary" />
+          </div>
+          <h1 className="text-xl font-bold tracking-tighter uppercase">Mark.sh</h1>
+        </div>
+        <button 
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          className="p-2 text-on-surface-variant hover:text-primary transition-colors"
+        >
+          {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </header>
+
+      {/* Sidebar / Mobile Menu Overlay */}
+      <AnimatePresence>
+        {(isSidebarOpen || window.innerWidth >= 1024) && (
+          <motion.aside 
+            initial={{ x: -256 }}
+            animate={{ x: 0 }}
+            exit={{ x: -256 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className={`fixed lg:sticky top-0 left-0 h-screen w-64 bg-surface border-r border-outline-variant/10 flex flex-col z-[60] lg:z-40 ${
+              isSidebarOpen ? 'block' : 'hidden lg:flex'
+            }`}
+          >
+            <div className="p-8 mb-4 hidden lg:block">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-8 h-8 bg-primary flex items-center justify-center">
+                  <Code2 size={20} className="text-on-primary" />
+                </div>
+                <h1 className="text-xl font-bold tracking-tighter uppercase">Mark.sh</h1>
+              </div>
+              <span className="label-metadata text-[9px]">Systems & Full-Stack Engineer</span>
             </div>
-            <h1 className="text-xl font-bold tracking-tighter uppercase">Mark.sh</h1>
-          </div>
-          <span className="label-metadata text-[9px]">Systems & Full-Stack Engineer</span>
-        </div>
 
-        <nav className="flex-1">
-          <NavItem icon={User} label="Identity" active={activeSection === 'home'} onClick={() => scrollTo('home')} />
-          <NavItem icon={Layers} label="Projects" active={activeSection === 'projects'} onClick={() => scrollTo('projects')} />
-          <NavItem icon={Cpu} label="Tech_Stack" active={activeSection === 'skills'} onClick={() => scrollTo('skills')} />
-          <NavItem icon={Terminal} label="Experience" active={activeSection === 'experience'} onClick={() => scrollTo('experience')} />
-          <NavItem icon={Mail} label="Connect" active={activeSection === 'contact'} onClick={() => scrollTo('contact')} />
-        </nav>
+            <nav className="flex-1 pt-8 lg:pt-0">
+              <NavItem icon={User} label="Identity" active={activeSection === 'home'} onClick={() => scrollTo('home')} />
+              <NavItem icon={Layers} label="Projects" active={activeSection === 'projects'} onClick={() => scrollTo('projects')} />
+              <NavItem icon={Cpu} label="Tech_Stack" active={activeSection === 'skills'} onClick={() => scrollTo('skills')} />
+              <NavItem icon={Terminal} label="Experience" active={activeSection === 'experience'} onClick={() => scrollTo('experience')} />
+              <NavItem icon={Mail} label="Connect" active={activeSection === 'contact'} onClick={() => scrollTo('contact')} />
+            </nav>
 
-        <div className="p-6 border-t border-outline-variant/10 space-y-4">
-          <div className="flex justify-around">
-            <a href="#" className="text-on-surface-variant hover:text-primary transition-colors"><Github size={18} /></a>
-            <a href="#" className="text-on-surface-variant hover:text-primary transition-colors"><Linkedin size={18} /></a>
-            <a href="#" className="text-on-surface-variant hover:text-primary transition-colors"><Globe size={18} /></a>
-          </div>
-          <button className="w-full btn-secondary text-[10px] py-2 flex items-center justify-center gap-2">
-            <FileText size={14} /> DOWNLOAD_CV
-          </button>
-        </div>
-      </aside>
+            <div className="p-6 border-t border-outline-variant/10 space-y-4">
+              <div className="flex justify-around">
+                <a href="#" className="text-on-surface-variant hover:text-primary transition-colors"><Github size={18} /></a>
+                <a href="#" className="text-on-surface-variant hover:text-primary transition-colors"><Linkedin size={18} /></a>
+                <a href="#" className="text-on-surface-variant hover:text-primary transition-colors"><Globe size={18} /></a>
+              </div>
+              <button className="w-full btn-secondary text-[10px] py-2 flex items-center justify-center gap-2">
+                <FileText size={14} /> DOWNLOAD_CV
+              </button>
+            </div>
+          </motion.aside>
+        )}
+      </AnimatePresence>
+
+      {/* Mobile Backdrop */}
+      {isSidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-surface/80 backdrop-blur-sm z-50 lg:hidden" 
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col overflow-hidden">
-        {/* Header */}
-        <header className="h-20 bg-surface border-b border-outline-variant/10 flex items-center justify-between px-8">
+      <main className="flex-1 flex flex-col min-w-0">
+        {/* Desktop Header */}
+        <header className="hidden lg:flex h-20 bg-surface border-b border-outline-variant/10 items-center justify-between px-8 sticky top-0 z-40">
           <div className="flex items-center gap-4">
             <div className="w-2 h-2 bg-primary shadow-[0_0_8px_rgba(105,218,255,0.4)]" />
             <span className="label-metadata text-[10px]">STATUS: <span className="text-primary">AVAILABLE_FOR_HIRE</span></span>
@@ -180,22 +230,22 @@ export default function App() {
         </header>
 
         {/* Viewport */}
-        <div className="flex-1 overflow-y-auto p-8 space-y-24 scroll-smooth">
+        <div className="flex-1 p-6 lg:p-12 space-y-24 lg:space-y-32">
           {/* Hero Section */}
-          <section id="home" className="min-h-[60vh] flex flex-col justify-center">
+          <section id="home" className="min-h-[50vh] lg:min-h-[60vh] flex flex-col justify-center">
             <div className="max-w-3xl">
               <span className="label-metadata text-primary mb-4 block tracking-[0.3em]">SYSTEM_INITIALIZED</span>
-              <h1 className="text-7xl font-bold tracking-tighter uppercase mb-6 leading-none">
-                Building <span className="text-primary">Monolithic</span> <br />
+              <h1 className="text-5xl lg:text-7xl font-bold tracking-tighter uppercase mb-6 leading-none">
+                Building <span className="text-primary">Monolithic</span> <br className="hidden md:block" />
                 Digital Infrastructure.
               </h1>
-              <p className="text-xl text-on-surface-variant leading-relaxed mb-10 font-light">
+              <p className="text-lg lg:text-xl text-on-surface-variant leading-relaxed mb-10 font-light">
                 I architect high-performance systems and scalable web applications. 
                 Focused on technical precision, distributed logic, and professional brutality in design.
               </p>
-              <div className="flex gap-4">
-                <button onClick={() => scrollTo('projects')} className="btn-primary">EXPLORE_WORK</button>
-                <button onClick={() => scrollTo('contact')} className="btn-secondary">GET_IN_TOUCH</button>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button onClick={() => scrollTo('projects')} className="btn-primary w-full sm:w-auto">EXPLORE_WORK</button>
+                <button onClick={() => scrollTo('contact')} className="btn-secondary w-full sm:w-auto">GET_IN_TOUCH</button>
               </div>
             </div>
           </section>
@@ -203,10 +253,10 @@ export default function App() {
           {/* Projects Section */}
           <section id="projects" className="space-y-12">
             <div>
-              <h2 className="text-4xl font-bold tracking-tighter uppercase mb-2">Featured_Projects</h2>
+              <h2 className="text-3xl lg:text-4xl font-bold tracking-tighter uppercase mb-2">Featured_Projects</h2>
               <div className="w-20 h-1 bg-primary" />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               <ProjectCard 
                 title="Project Obsidian" 
                 description="A distributed key-value store engine optimized for high-write throughput and low-latency reads. Built with Rust and Raft consensus."
@@ -247,11 +297,11 @@ export default function App() {
           </section>
 
           {/* Skills & Experience Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-12 lg:gap-16">
             {/* Skills */}
-            <section id="skills" className="lg:col-span-1 space-y-8">
+            <section id="skills" className="xl:col-span-1 space-y-8">
               <div>
-                <h2 className="text-3xl font-bold tracking-tighter uppercase mb-6">Tech_Stack</h2>
+                <h2 className="text-2xl lg:text-3xl font-bold tracking-tighter uppercase mb-6">Tech_Stack</h2>
                 <div className="space-y-1">
                   <SkillModule label="TYPESCRIPT / REACT" level={95} />
                   <SkillModule label="RUST / SYSTEMS" level={82} />
@@ -274,9 +324,9 @@ export default function App() {
             </section>
 
             {/* Experience */}
-            <section id="experience" className="lg:col-span-2 space-y-8">
+            <section id="experience" className="xl:col-span-2 space-y-8">
               <div>
-                <h2 className="text-3xl font-bold tracking-tighter uppercase mb-6">Execution_History</h2>
+                <h2 className="text-2xl lg:text-3xl font-bold tracking-tighter uppercase mb-6">Execution_History</h2>
                 <ExperienceLog />
               </div>
 
@@ -313,9 +363,9 @@ export default function App() {
 
           {/* Contact Section */}
           <section id="contact" className="pb-24">
-            <div className="card bg-surface-low border-l-4 border-primary p-12">
+            <div className="card bg-surface-low border-l-4 border-primary p-8 lg:p-12">
               <div className="max-w-2xl">
-                <h2 className="text-5xl font-bold tracking-tighter uppercase mb-6">Establish_Connection</h2>
+                <h2 className="text-4xl lg:text-5xl font-bold tracking-tighter uppercase mb-6">Establish_Connection</h2>
                 <p className="text-on-surface-variant mb-10 leading-relaxed">
                   I am currently open to new opportunities and collaborations. 
                   If you have a project that requires technical precision and monolithic architecture, 
@@ -325,11 +375,11 @@ export default function App() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                   <div className="space-y-1">
                     <span className="label-metadata">EMAIL_ADDRESS</span>
-                    <p className="text-lg font-mono text-primary">matmatmark@gmail.com</p>
+                    <p className="text-base lg:text-lg font-mono text-primary break-all">matmatmark@gmail.com</p>
                   </div>
                   <div className="space-y-1">
                     <span className="label-metadata">LOCATION_ORIGIN</span>
-                    <p className="text-lg font-mono text-on-surface">SAN_FRANCISCO, CA [PST]</p>
+                    <p className="text-base lg:text-lg font-mono text-on-surface">SAN_FRANCISCO, CA [PST]</p>
                   </div>
                 </div>
 
@@ -347,9 +397,9 @@ export default function App() {
         </div>
 
         {/* Footer */}
-        <footer className="h-12 bg-surface border-t border-outline-variant/10 flex items-center justify-between px-8 text-[9px] font-mono text-on-surface-variant">
+        <footer className="py-6 lg:h-12 bg-surface border-t border-outline-variant/10 flex flex-col lg:flex-row items-center justify-between px-8 gap-4 text-[9px] font-mono text-on-surface-variant text-center lg:text-left">
           <span>&copy; 2026 MARK_PORTFOLIO_V4.0.1 // ALL_RIGHTS_RESERVED</span>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap justify-center gap-4 lg:gap-6">
             <span>LATENCY: 14MS</span>
             <span>ENCRYPTION: AES-256</span>
             <span className="text-primary">SYSTEM_NOMINAL</span>
