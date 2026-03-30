@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Design System Colors */
+  --color-surface: #0c0e12;
+  --color-surface-low: #111318;
+  --color-surface-high: #1d2025;
+  --color-surface-highest: #23262c;
+  --color-surface-bright: #292c33;
+  --color-primary: #69daff;
+  --color-primary-dark: #00cffc;
+  --color-on-primary: #004a5d;
+  --color-on-surface: #f6f6fc;
+  --color-on-surface-variant: #aaabb0;
+  --color-outline-variant: #46484d;
+  --color-secondary-container: #304a5c;
+  --color-on-secondary-container: #b9d4eb;
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface font-sans antialiased selection:bg-primary selection:text-on-primary;
+    margin: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight font-medium;
+  }
+
+  /* Remove all border radius as per spec */
+  * {
+    border-radius: 0 !important;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-on-primary px-6 py-2 font-semibold transition-all duration-200 hover:shadow-[0_0_20px_rgba(105,218,255,0.3)] active:scale-[0.98];
+    background: linear-gradient(180deg, #69daff 0%, #00cffc 100%);
+  }
+
+  .btn-secondary {
+    @apply bg-transparent border border-outline-variant/20 text-primary px-6 py-2 font-semibold transition-all duration-200 hover:bg-surface-high;
+  }
+
+  .card {
+    @apply bg-surface-low p-6 transition-colors duration-200;
+  }
+
+  .card-interactive {
+    @apply hover:bg-surface-high cursor-pointer;
+  }
+
+  .input-field {
+    @apply bg-surface-low border-l-2 border-transparent px-4 py-3 text-on-surface placeholder:text-on-surface-variant focus:bg-surface-high focus:border-primary outline-none transition-all duration-200;
+  }
+
+  .label-metadata {
+    @apply text-[10px] uppercase tracking-widest text-on-surface-variant font-mono;
+  }
+
+  .glass-overlay {
+    @apply bg-surface-highest/85 backdrop-blur-xl;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-surface;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-outline-variant/30 hover:bg-primary/50;
+}
