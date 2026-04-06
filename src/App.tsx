@@ -503,7 +503,11 @@ export default function App() {
                   </div>
                 </div>
 
-                <ContactForm />
+                <div className="p-6 bg-surface border border-outline-variant/20 text-center">
+                  <p className="text-on-surface font-mono mb-2">PREFER_DIRECT_CONTACT</p>
+                  <p className="text-sm text-on-surface-variant mb-4">Reach out via email or LinkedIn for fastest response.</p>
+                  <a href="mailto:matmatmark@gmail.com" className="btn-primary inline-block">SEND_EMAIL_DIRECTLY</a>
+                </div>
               </div>
             </div>
           </section>
