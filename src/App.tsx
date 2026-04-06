@@ -42,6 +42,87 @@ interface SkillTagProps {
 
 // --- Components ---
 
+const LiveClock: React.FC = () => {
+  const [time, setTime] = React.useState<string>('');
+  
+  React.useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const utc8Time = new Date(now.getTime() + (8 * 60 * 60 * 1000));
+      const hours = String(utc8Time.getUTCHours()).padStart(2, '0');
+      const minutes = String(utc8Time.getUTCMinutes()).padStart(2, '0');
+      const seconds = String(utc8Time.getUTCSeconds()).padStart(2, '0');
+      setTime(`${hours}:${minutes}:${seconds}`);
+    };
+    
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+  
+  return (
+    <span className="label-metadata text-[10px] font-mono text-on-surface-variant">
+      UTC+8: {time}
+    </span>
+  );
+};
+
+const ContactForm: React.FC = () => {
+  const [name, setName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [message, setMessage] = React.useState('');
+  const [submitted, setSubmitted] = React.useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = `Portfolio Contact from ${name}`;
+    const body = `From: ${name} (${email})\n\nMessage:\n${message}`;
+    window.location.href = `mailto:matmatmark@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setSubmitted(true);
+  };
+
+  if (submitted) {
+    return (
+      <div className="p-6 bg-surface border border-primary/30 text-center">
+        <p className="text-primary font-mono mb-2">MESSAGE_READY_TO_SEND</p>
+        <p className="text-sm text-on-surface-variant">Your email client should have opened. If not, email me directly at matmatmark@gmail.com</p>
+      </div>
+    );
+  }
+
+  return (
+    <form className="space-y-4" onSubmit={handleSubmit}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input 
+          type="text" 
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="IDENTIFIER (NAME)" 
+          className="input-field" 
+          required 
+        />
+        <input 
+          type="email" 
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="RETURN_ADDRESS (EMAIL)" 
+          className="input-field" 
+          required 
+        />
+      </div>
+      <textarea 
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        placeholder="MESSAGE_PAYLOAD" 
+        rows={4} 
+        className="input-field w-full resize-none" 
+        required
+      ></textarea>
+      <button type="submit" className="btn-primary w-full md:w-auto px-12">SEND_MESSAGE</button>
+    </form>
+  );
+};
+
 const NavItem: React.FC<NavItemProps> = ({ icon: Icon, label, active, onClick }) => (
   <button
     onClick={onClick}
@@ -250,7 +331,7 @@ export default function App() {
               <Zap size={14} className="text-primary" />
               <span className="label-metadata text-[9px]">UPTIME: <span className="text-primary">99.99%</span></span>
             </div>
-            <span className="label-metadata text-[10px] font-mono text-on-surface-variant">UTC: 05:11:51</span>
+            <LiveClock />
           </div>
         </header>
 
@@ -399,9 +480,8 @@ export default function App() {
               <div className="max-w-2xl">
                 <h2 className="text-4xl lg:text-5xl font-bold tracking-tighter uppercase mb-6">Establish_Connection</h2>
                 <p className="text-on-surface-variant mb-10 leading-relaxed">
-                  I am currently open to senior IC roles where breadth is a feature — 
-                  AI infrastructure, fintech, or high-velocity startups where the playbook isn't written yet. 
-                  If you have a project that requires technical precision, let's start the handshake.
+                  Open to remote dev roles — backend, infrastructure, or anywhere I can write solid code and ship. 
+                  Prefer fast-moving teams over slow-moving enterprises.
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -411,7 +491,7 @@ export default function App() {
                   </div>
                   <div className="space-y-1">
                     <span className="label-metadata">LOCATION_ORIGIN</span>
-                    <p className="text-base lg:text-lg font-mono text-on-surface">SAMPALOC, MANILA [PST]</p>
+                    <p className="text-base lg:text-lg font-mono text-on-surface">PHILIPPINES [UTC+8]</p>
                   </div>
                   <div className="space-y-1">
                     <span className="label-metadata">MOBILE</span>
@@ -423,14 +503,7 @@ export default function App() {
                   </div>
                 </div>
 
-                <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" placeholder="IDENTIFIER (NAME)" className="input-field" />
-                    <input type="email" placeholder="RETURN_ADDRESS (EMAIL)" className="input-field" />
-                  </div>
-                  <textarea placeholder="MESSAGE_PAYLOAD" rows={4} className="input-field w-full resize-none"></textarea>
-                  <button className="btn-primary w-full md:w-auto px-12">SEND_MESSAGE</button>
-                </form>
+                <ContactForm />
               </div>
             </div>
           </section>
