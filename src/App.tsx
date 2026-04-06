@@ -85,18 +85,43 @@ const ExperienceLog: React.FC = () => (
     <div className="space-y-4 text-on-surface-variant">
       <div className="relative pl-4 border-l border-primary/30">
         <div className="absolute -left-[4.5px] top-0 w-2 h-2 bg-primary" />
-        <p className="text-on-surface font-bold">[2024 - PRESENT] SENIOR_SYSTEMS_ENGINEER @ NEURAL_MESH</p>
-        <p className="mt-1">Architecting distributed inference pipelines for LLMs. Reduced latency by 40% using custom Rust-based load balancers.</p>
+        <p className="text-on-surface font-bold">[2025 - PRESENT] TECHNICAL_OPERATIONS_CONSULTANT @ BARLY_PHARMACY</p>
+        <p className="mt-1">Direct operations support for family-run business. SSS compliance, payroll systems, IT infrastructure, print operations. Multi-hat ops work.</p>
       </div>
       <div className="relative pl-4 border-l border-outline-variant/30">
         <div className="absolute -left-[4.5px] top-0 w-2 h-2 bg-outline-variant" />
-        <p className="text-on-surface font-bold">[2022 - 2024] FULL_STACK_DEVELOPER @ OBSIDIAN_LABS</p>
-        <p className="mt-1">Led the transition from monolith to microservices. Implemented real-time data sync using WebSockets and Go.</p>
+        <p className="text-on-surface font-bold">[2023 - 2025] FRONTEND_DEVELOPER @ ARCHINTEL</p>
+        <p className="mt-1">Built Salesforce backends with Apex/Visualforce. Created email systems, updated UIs, built reports, managed Jira/Basecamp workflows, client support.</p>
       </div>
       <div className="relative pl-4 border-l border-outline-variant/30">
         <div className="absolute -left-[4.5px] top-0 w-2 h-2 bg-outline-variant" />
-        <p className="text-on-surface font-bold">[2020 - 2022] SOFTWARE_ENGINEER_INTERN @ CLOUD_CORE</p>
-        <p className="mt-1">Optimized CI/CD pipelines and managed Kubernetes clusters for high-traffic applications.</p>
+        <p className="text-on-surface font-bold">[2021 - 2023] OPERATIONS_ASSOCIATE @ BARLY_PHARMACY</p>
+        <p className="mt-1">Logistics & inventory, customer operations, admin & compliance, property management. Jack of all trades, master of getting things done.</p>
+      </div>
+      <div className="relative pl-4 border-l border-outline-variant/30">
+        <div className="absolute -left-[4.5px] top-0 w-2 h-2 bg-outline-variant" />
+        <p className="text-on-surface font-bold">[2020 - 2021] SOFTWARE_ENGINEER_3 @ CLOUD_PANDA_PH</p>
+        <p className="mt-1">Built & maintained projects serving internal teams. Communicated with QA, managers regarding code fixes and project updates.</p>
+      </div>
+      <div className="relative pl-4 border-l border-outline-variant/30">
+        <div className="absolute -left-[4.5px] top-0 w-2 h-2 bg-outline-variant" />
+        <p className="text-on-surface font-bold">[2019 - 2020] SYSTEM_ANALYST @ PSBANK</p>
+        <p className="mt-1">System development using React JS, .NET Core WEB API, SQL Server, Oracle DB. Application support for Daily Attendance Record, HR and Trust Division systems.</p>
+      </div>
+      <div className="relative pl-4 border-l border-outline-variant/30">
+        <div className="absolute -left-[4.5px] top-0 w-2 h-2 bg-outline-variant" />
+        <p className="text-on-surface font-bold">[2019] DESIGN_ENGINEER_TRAINEE @ TSUKIDEN_GLOBAL</p>
+        <p className="mt-1">Unit testing of C code snippets with custom tools. Documentation with Microsoft Word and Excel.</p>
+      </div>
+      <div className="relative pl-4 border-l border-outline-variant/30">
+        <div className="absolute -left-[4.5px] top-0 w-2 h-2 bg-outline-variant" />
+        <p className="text-on-surface font-bold">[2018] COMPUTER_PROGRAMMER @ HELIX_SOFTWARE</p>
+        <p className="mt-1">Website layouts with HTML, CSS, jQuery, SenchaJS, Bootstrap. Brochure designs, logos with Adobe Photoshop. User support with MySQL, SQL Server.</p>
+      </div>
+      <div className="relative pl-4 border-l border-outline-variant/30">
+        <div className="absolute -left-[4.5px] top-0 w-2 h-2 bg-outline-variant" />
+        <p className="text-on-surface font-bold">[2018] INTERN_BACK_END_DEV @ AND_DIGITAL</p>
+        <p className="mt-1">Design layouts with HTML/CSS. Beer tap app with .NET Web API and AngularJS. iOS app policy research.</p>
       </div>
     </div>
   </div>
@@ -149,7 +174,7 @@ export default function App() {
           <div className="w-8 h-8 bg-primary flex items-center justify-center">
             <Code2 size={20} className="text-on-primary" />
           </div>
-          <h1 className="text-xl font-bold tracking-tighter uppercase">Mark.sh</h1>
+          <h1 className="text-xl font-bold tracking-tighter uppercase">MDB.sh</h1>
         </div>
         <button 
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -191,13 +216,13 @@ export default function App() {
 
             <div className="p-6 border-t border-outline-variant/10 space-y-4">
               <div className="flex justify-around">
-                <a href="#" className="text-on-surface-variant hover:text-primary transition-colors"><Github size={18} /></a>
-                <a href="#" className="text-on-surface-variant hover:text-primary transition-colors"><Linkedin size={18} /></a>
-                <a href="#" className="text-on-surface-variant hover:text-primary transition-colors"><Globe size={18} /></a>
+                <a href="https://github.com/mdbabaylan" target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary transition-colors"><Github size={18} /></a>
+                <a href="https://www.linkedin.com/in/mbabaylan" target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary transition-colors"><Linkedin size={18} /></a>
+                <a href="https://mdbabaylan.github.io/" target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary transition-colors"><Globe size={18} /></a>
               </div>
-              <button className="w-full btn-secondary text-[10px] py-2 flex items-center justify-center gap-2">
+              <a href="/resume-mark-daniel-babaylan.pdf" download className="w-full btn-secondary text-[10px] py-2 flex items-center justify-center gap-2">
                 <FileText size={14} /> DOWNLOAD_CV
-              </button>
+              </a>
             </div>
           </motion.aside>
         )}
@@ -236,12 +261,12 @@ export default function App() {
             <div className="max-w-3xl">
               <span className="label-metadata text-primary mb-4 block tracking-[0.3em]">SYSTEM_INITIALIZED</span>
               <h1 className="text-5xl lg:text-7xl font-bold tracking-tighter uppercase mb-6 leading-none">
-                Building <span className="text-primary">Monolithic</span> <br className="hidden md:block" />
-                Digital Infrastructure.
+                Mark Daniel <span className="text-primary">Babaylan</span>
               </h1>
               <p className="text-lg lg:text-xl text-on-surface-variant leading-relaxed mb-10 font-light">
-                I architect high-performance systems and scalable web applications. 
-                Focused on technical precision, distributed logic, and professional brutality in design.
+                Software engineer building agentic systems. I ship across tech, operations, and markets —
+                from Vue/Salesforce systems serving 500+ users to AI infrastructure. 
+                6+ years of building systems that make decisions under uncertainty.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button onClick={() => scrollTo('projects')} className="btn-primary w-full sm:w-auto">EXPLORE_WORK</button>
@@ -258,40 +283,42 @@ export default function App() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               <ProjectCard 
-                title="Project Obsidian" 
-                description="A distributed key-value store engine optimized for high-write throughput and low-latency reads. Built with Rust and Raft consensus."
-                tags={['RUST', 'DISTRIBUTED_SYSTEMS', 'RAFT']}
-                github="#"
+                title="2026 Portfolio" 
+                description="Multi-agent development workflow showcase — UI/UX designed with Google Stitch, core architecture generated via Google AI Studio, content and refinements completed with Kimi Code CLI using actual resume data."
+                tags={['REACT', 'TYPESCRIPT', 'MULTI_AGENT_WORKFLOW', 'AI_COLLABORATION']}
+                github="https://github.com/mdbabaylan/2026-mdbabaylan-portfolio"
+                link="https://mdbabaylan.github.io/"
               />
               <ProjectCard 
-                title="Neural Mesh" 
-                description="Real-time AI inference pipeline that scales horizontally across multiple GPU nodes. Handles 10k+ requests per second."
-                tags={['PYTHON', 'KUBERNETES', 'PYTORCH']}
-                link="#"
+                title="OpenClaw Setup" 
+                description="Documentation and setup guide for OpenClaw, an open-source agentic AI tool. Includes architecture diagram showing my personal workflow."
+                tags={['AI_AGENTS', 'OPENCLAW', 'DOCUMENTATION']}
+                github="https://github.com/mdbabaylan/mdbabaylan-openclaw-setup"
               />
               <ProjectCard 
-                title="Void OS" 
-                description="A minimal microkernel operating system written from scratch to explore memory safety and hardware abstraction layers."
-                tags={['C++', 'X86_64', 'ASSEMBLY']}
-                github="#"
+                title="ArchIntel Exam" 
+                description="AI-assisted rapid build — Vue frontend + custom backend completed in under 24 hours to pass ArchIntel technical exam. Leveraged ChatGPT for architecture decisions."
+                tags={['VUE', 'NODE.JS', 'AI_ASSISTED', 'RAPID_PROTOTYPING']}
+                github="https://github.com/mdbabaylan/archintel-exam"
+                link="https://github.com/mdbabaylan/archintel-exam-mockupserver"
               />
               <ProjectCard 
-                title="Monolith UI" 
-                description="The design system used for this portfolio. A React-based component library focusing on technical brutality and high-density data."
-                tags={['REACT', 'TYPESCRIPT', 'TAILWIND']}
-                github="#"
+                title="Hermes Config" 
+                description="Configuration for Hermes AI agent — self-improving, skill-equippable alternative to OpenClaw. Reduces dependency risk from single LLM provider downtime (Claude/OpenAI)."
+                tags={['AI_AGENTS', 'HERMES', 'LLM', 'INFRASTRUCTURE']}
+                github="https://github.com/mdbabaylan/hermes-config"
               />
               <ProjectCard 
-                title="Flux Engine" 
-                description="A high-frequency trading engine prototype capable of processing market data feeds with sub-millisecond latency."
-                tags={['GO', 'WEBSOCKETS', 'REDIS']}
-                link="#"
+                title="Weekly Attestation CLI" 
+                description="Automates weekly fitness reports for my fitness group. Compiles macros from Cronometer, exercise and weight data from CSV using local GPU + Ollama for processing."
+                tags={['PYTHON', 'OLLAMA', 'LOCAL_LLM', 'AUTOMATION']}
+                github="https://github.com/mdbabaylan/weekly-attestation-cli"
               />
               <ProjectCard 
-                title="Core Vault" 
-                description="End-to-end encrypted file storage solution with decentralized metadata management and zero-knowledge proofs."
-                tags={['NODE.JS', 'CRYPTOGRAPHY', 'IPFS']}
-                github="#"
+                title="Pourover Mini Calc" 
+                description="Minimalist coffee brewing calculator. Made out of frustration from repeatedly pulling out a calculator for morning pourover coffee ratios."
+                tags={['SIDE_PROJECT', 'UTILITIES', 'COFFEE']}
+                github="https://github.com/mdbabaylan/pourover-mini-calc"
               />
             </div>
           </section>
@@ -303,22 +330,23 @@ export default function App() {
               <div>
                 <h2 className="text-2xl lg:text-3xl font-bold tracking-tighter uppercase mb-6">Tech_Stack</h2>
                 <div className="space-y-1">
-                  <SkillModule label="TYPESCRIPT / REACT" level={95} />
-                  <SkillModule label="RUST / SYSTEMS" level={82} />
-                  <SkillModule label="GO / BACKEND" level={88} />
-                  <SkillModule label="KUBERNETES / DEVOPS" level={75} />
-                  <SkillModule label="POSTGRESQL / SQL" level={90} />
-                  <SkillModule label="PYTHON / AI" level={70} />
+                  <SkillModule label="VUE.JS / REACT" level={90} />
+                  <SkillModule label="SALESFORCE / APEX" level={85} />
+                  <SkillModule label="JAVASCRIPT / TYPESCRIPT" level={92} />
+                  <SkillModule label=".NET / C#" level={80} />
+                  <SkillModule label="SQL / ORACLE / SQL_SERVER" level={85} />
+                  <SkillModule label="AI INFRASTRUCTURE / AGENTS" level={75} />
                 </div>
               </div>
               
               <div className="card bg-surface-low">
                 <h3 className="label-metadata mb-4">CORE_COMPETENCIES</h3>
                 <ul className="space-y-2 text-sm text-on-surface-variant font-mono">
-                  <li className="flex items-center gap-2"><ChevronRight size={12} className="text-primary" /> DISTRIBUTED_SYSTEMS</li>
-                  <li className="flex items-center gap-2"><ChevronRight size={12} className="text-primary" /> CLOUD_ARCHITECTURE</li>
-                  <li className="flex items-center gap-2"><ChevronRight size={12} className="text-primary" /> API_DESIGN_REST_GRPC</li>
-                  <li className="flex items-center gap-2"><ChevronRight size={12} className="text-primary" /> PERFORMANCE_OPTIMIZATION</li>
+                  <li className="flex items-center gap-2"><ChevronRight size={12} className="text-primary" /> FULL_STACK_DEVELOPMENT</li>
+                  <li className="flex items-center gap-2"><ChevronRight size={12} className="text-primary" /> SALESFORCE_DEVELOPMENT</li>
+                  <li className="flex items-center gap-2"><ChevronRight size={12} className="text-primary" /> AI_INFRASTRUCTURE</li>
+                  <li className="flex items-center gap-2"><ChevronRight size={12} className="text-primary" /> SYSTEMS_ANALYSIS</li>
+                  <li className="flex items-center gap-2"><ChevronRight size={12} className="text-primary" /> TECHNICAL_OPERATIONS</li>
                 </ul>
               </div>
             </section>
@@ -333,27 +361,31 @@ export default function App() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="card border-t-2 border-primary">
                   <h3 className="label-metadata mb-4">EDUCATION</h3>
-                  <p className="text-on-surface font-bold">B.S. COMPUTER SCIENCE</p>
-                  <p className="text-xs text-on-surface-variant">University of Technology // 2016 - 2020</p>
+                  <p className="text-on-surface font-bold">B.S. INFORMATION TECHNOLOGY</p>
+                  <p className="text-xs text-on-surface-variant">Colegio de San Juan de Letran // 2014 - 2018</p>
                   <p className="mt-4 text-xs leading-relaxed text-on-surface-variant">
-                    Specialized in Operating Systems and Distributed Computing. 
-                    Graduated with honors.
+                    Comprehensive IT education covering software development, systems analysis, 
+                    and database management.
                   </p>
                 </div>
                 <div className="card border-t-2 border-outline-variant/20">
                   <h3 className="label-metadata mb-4">CERTIFICATIONS</h3>
                   <ul className="space-y-3 text-xs text-on-surface-variant">
                     <li className="flex justify-between">
-                      <span>AWS SOLUTIONS ARCHITECT</span>
-                      <span className="text-primary">2023</span>
+                      <span>JAVASCRIPT BASICS FOR BEGINNERS</span>
+                      <span className="text-primary">✓</span>
                     </li>
                     <li className="flex justify-between">
-                      <span>CKAD (KUBERNETES)</span>
-                      <span className="text-primary">2022</span>
+                      <span>MTA-98-375 (HTML5 APP DEV)</span>
+                      <span className="text-primary">✓</span>
                     </li>
                     <li className="flex justify-between">
-                      <span>RUST CORE SPECIALIST</span>
-                      <span className="text-primary">2021</span>
+                      <span>EF SET ENGLISH C1 ADVANCED (67/100)</span>
+                      <span className="text-primary">✓</span>
+                    </li>
+                    <li className="flex justify-between">
+                      <span>OOP IN JAVASCRIPT</span>
+                      <span className="text-primary">✓</span>
                     </li>
                   </ul>
                 </div>
@@ -367,9 +399,9 @@ export default function App() {
               <div className="max-w-2xl">
                 <h2 className="text-4xl lg:text-5xl font-bold tracking-tighter uppercase mb-6">Establish_Connection</h2>
                 <p className="text-on-surface-variant mb-10 leading-relaxed">
-                  I am currently open to new opportunities and collaborations. 
-                  If you have a project that requires technical precision and monolithic architecture, 
-                  let's start the handshake.
+                  I am currently open to senior IC roles where breadth is a feature — 
+                  AI infrastructure, fintech, or high-velocity startups where the playbook isn't written yet. 
+                  If you have a project that requires technical precision, let's start the handshake.
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -379,7 +411,15 @@ export default function App() {
                   </div>
                   <div className="space-y-1">
                     <span className="label-metadata">LOCATION_ORIGIN</span>
-                    <p className="text-base lg:text-lg font-mono text-on-surface">SAN_FRANCISCO, CA [PST]</p>
+                    <p className="text-base lg:text-lg font-mono text-on-surface">SAMPALOC, MANILA [PST]</p>
+                  </div>
+                  <div className="space-y-1">
+                    <span className="label-metadata">MOBILE</span>
+                    <p className="text-base lg:text-lg font-mono text-primary">09270815174</p>
+                  </div>
+                  <div className="space-y-1">
+                    <span className="label-metadata">LINKEDIN</span>
+                    <a href="https://www.linkedin.com/in/mbabaylan" target="_blank" rel="noopener noreferrer" className="text-base lg:text-lg font-mono text-primary hover:underline">linkedin.com/in/mbabaylan</a>
                   </div>
                 </div>
 
@@ -398,7 +438,7 @@ export default function App() {
 
         {/* Footer */}
         <footer className="py-6 lg:h-12 bg-surface border-t border-outline-variant/10 flex flex-col lg:flex-row items-center justify-between px-8 gap-4 text-[9px] font-mono text-on-surface-variant text-center lg:text-left">
-          <span>&copy; 2026 MARK_PORTFOLIO_V4.0.1 // ALL_RIGHTS_RESERVED</span>
+          <span>&copy; 2026 MDB_PORTFOLIO_V4.0.1 // ALL_RIGHTS_RESERVED</span>
           <div className="flex flex-wrap justify-center gap-4 lg:gap-6">
             <span>LATENCY: 14MS</span>
             <span>ENCRYPTION: AES-256</span>
